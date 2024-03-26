@@ -18,7 +18,7 @@ pip install -r requirements.txt
 ```
 Make a new file called `constants.json` and fill it with the correct stuff
 ```
-echo "{"API_KEY":""}" > constants.json
+echo "{ \"API_KEY\":\"\" }" > constants.json
 ```
 run `main.py`
 
