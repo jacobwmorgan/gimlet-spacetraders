@@ -9,6 +9,7 @@ import re
 import requests
 from rich.console import Console
 from rich.progress import track
+from sys import exit
 
 class Player:
     """
@@ -93,8 +94,10 @@ class Player:
 
         with open('constants.json', 'w', encoding='utf-8') as f:
             json.dump({"API_KEY": response['data']['token']}, f, indent=4)
+        self.console.print(":recycle: Restart program\n*Spacetraders has to do something cringe?*")
+        exit()
 
-    def authentication_header(self):
+    def authentication_header(self): # api calls should be in a wrapper
         """ 
             Authorize player
 
