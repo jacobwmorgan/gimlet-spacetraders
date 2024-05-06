@@ -17,7 +17,10 @@ class Waypoint(SpaceObject):
         self.symbol = symbol
         stripped_symbol = self.symbol.split('-')
         self.system = System(f"{stripped_symbol[0]}-{stripped_symbol[1]}")
-        data = self.get_waypoint_info()
+        self.waypoint_symbol = stripped_symbol[-1]
+        data = self.get_waypoint_info()['data']
+        super().__init__(symbol,data['type'],data['x'],data['y'])
+        print(data)
 
     def get_waypoint_info(self):
         """Get system information
@@ -26,8 +29,8 @@ class Waypoint(SpaceObject):
             json: system information
         """
         return requests.get(
-                            'https://api.spacetraders.io/v2/my/agent', 
-                            headers=authentication.header(),
-                            timeout=5
+            f'https://api.spacetraders.io/v2/systems/{self.system.symbol}/waypoints/{self.symbol}', 
+            headers=authentication.header(),
+            timeout=5
         ).json()
         

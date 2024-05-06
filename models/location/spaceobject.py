@@ -16,3 +16,9 @@ class SpaceObject:
     # ships: list
     # # marketplace: list[Market]
     # structures: list
+
+    def __init__(self, symbol: str, type: str, x: str, y: str):
+        self.symbol = symbol
+        self.type = type
+        self.x = x
+        self.y = y

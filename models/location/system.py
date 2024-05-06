@@ -15,10 +15,7 @@ class System(SpaceObject):
     def __init__(self, symbol):
         self.symbol = symbol
         data = self.get_system_info()
-        self.sector = data['sectorSymbol']
-        self.type = data['type']
-        self.x = data['x']
-        self.y = data['y']
+        super().__init__(symbol,data['type'],data['x'],data['y'])
         #self.waypoints = self.build_waypoints(data['waypoints'])
 
     def get_system_info(self):
