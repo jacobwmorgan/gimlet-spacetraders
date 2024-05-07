@@ -39,4 +39,5 @@ if __name__ == '__main__':
     player.display_player_info()
     console.print(player.headquaters)
     console.print(player.headquaters.orbitals)
-    
+    console.print(player.get_player_contracts())
+    player.build_player_contracts()

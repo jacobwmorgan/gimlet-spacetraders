@@ -31,7 +31,10 @@ class Player:
         self.contracts = {}
 
     def get_player_info(self):
-        """ Returns player info
+        """ Get Player Info
+
+            Returns:
+                json: player info
         """
 
         return requests.get(
@@ -40,12 +43,8 @@ class Player:
                             timeout=5
         ).json()
 
-
     def display_player_info(self):
-        """ Player info
-
-        Returns:
-            json: response
+        """ Printing Player info
         """
         # I cant do this on one line , I know it looks mega ugly
         self.console.print(f":trident: Username: {self.username}")
@@ -53,3 +52,30 @@ class Player:
         self.console.print(f":shamrock: Credits: {self.credits}")
         self.console.print(f":shield: Faction: {self.faction}")
         self.console.print(f":rocket: Ship Count: {self.ship_count}")
+
+    def get_player_contracts(self):
+        """ Get Player Contracts
+
+            Returns:
+                json: all players contracts
+        """
+        return requests.get(
+                            'https://api.spacetraders.io/v2/my/contracts', 
+                            headers=authentication.header(),
+                            timeout=5
+        ).json()
+
+    def build_player_contracts(self):
+        """ Builds Player Contracts
+
+            json -> Contract object
+            
+            
+            Returns: 
+                Contract objects
+        """
+        contracts = self.get_player_contracts()['data']
+
+        for i in contracts:
+            print(i)
+        
