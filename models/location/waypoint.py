@@ -1,10 +1,12 @@
 """
-    Model for the Waypoint class
+    Model for the Waypoint class's
 """
 import requests
+import sys
 from models.location.spaceobject import SpaceObject
 from models.location.system import System
 from api import authentication
+
 
 class Waypoint(SpaceObject):
     """
@@ -20,7 +22,8 @@ class Waypoint(SpaceObject):
         self.waypoint_symbol = stripped_symbol[-1]
         data = self.get_waypoint_info()['data']
         super().__init__(symbol,data['type'],data['x'],data['y'])
-        print(data)
+        if data['orbitals'] is not None:
+            self.orbitals = [Orbital(i['symbol'],self) for i in data['orbitals']]
 
     def get_waypoint_info(self):
         """Get system information
@@ -33,4 +36,13 @@ class Waypoint(SpaceObject):
             headers=authentication.header(),
             timeout=5
         ).json()
-        
+
+
+class Orbital(Waypoint):
+    """
+        Space Orbital, Orbits a waypoint
+    """
+
+    def __init__(self,symbol, orbits_from):
+        super().__init__(symbol)
+        self.orbits = orbits_from

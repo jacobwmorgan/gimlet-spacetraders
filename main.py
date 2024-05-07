@@ -37,4 +37,6 @@ if __name__ == '__main__':
     console.print("Welcome to Space Traders API test",style=STYLE, justify="center")
     console.print(f":zap: Next Server Reset -> {next_server_reset}")
     player.display_player_info()
+    console.print(player.headquaters)
+    console.print(player.headquaters.orbitals)
     

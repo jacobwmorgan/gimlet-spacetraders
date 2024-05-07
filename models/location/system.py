@@ -30,7 +30,7 @@ class System(SpaceObject):
                             headers=authentication.header(),
                             timeout=5
         ).json()['data']
-    
+
     def build_waypoints(self, waypoints):
         """
             Build All Waypoints linked to system

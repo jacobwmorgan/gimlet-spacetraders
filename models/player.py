@@ -20,7 +20,7 @@ class Player:
         data = self.get_player_info()['data']
         if 'error' in data:
             if data['error']['code'] == 401:
-                helpers.register() # Annoying naming ik ik ik ik ik
+                helpers.register()
             else:
                 self.console.print(f":x: {data['error']['message']}")
         self.username = data['symbol']
@@ -28,7 +28,7 @@ class Player:
         self.credits = data['credits']
         self.faction = data['startingFaction']
         self.ship_count = data['shipCount']
-
+        self.contracts = {}
 
     def get_player_info(self):
         """ Returns player info
@@ -50,7 +50,6 @@ class Player:
         # I cant do this on one line , I know it looks mega ugly
         self.console.print(f":trident: Username: {self.username}")
         self.console.print(f":stadium: Headquaters: {self.headquaters.symbol}")
-        self.console.print(f":stadium: System: {self.headquaters.system}")
         self.console.print(f":shamrock: Credits: {self.credits}")
         self.console.print(f":shield: Faction: {self.faction}")
         self.console.print(f":rocket: Ship Count: {self.ship_count}")
